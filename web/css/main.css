@@ -1,0 +1,249 @@
+/* 
+    Created on : 15/11/2016, 7:47:25 PM
+    Author     : QuazaR
+*/
+/*! normalize.css v4.1.1 | MIT License | github.com/necolas/normalize.css */
+progress,sub,sup{vertical-align:baseline}button,hr,input{overflow:visible}[type=checkbox],[type=radio],legend{box-sizing:border-box;padding:0}html{font-family:"Source Sans Pro",sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%;margin: 0 auto;}
+
+/*
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+*/
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #82071E;
+}
+
+.site-wrapper {
+    display: flex;
+    min-height: 100vh;
+}
+
+/*sidebar styles*/
+.sidebar {
+    align-items: center;
+    background: #FF0C3B;
+    display: inline-flex;
+    flex-direction: column;
+    width: 25%;
+}
+
+.logo {
+    width: 90%;
+}
+
+.sidebar__box {
+    align-items: center;
+    background: #FFC853;
+    border-radius: 20px;
+    box-shadow:6px 6px 5px 0px rgba(0,0,0,0.3);
+    cursor: pointer;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+    text-decoration: none;
+    width: 90%;
+}
+
+.sidebar__box:hover {
+    background: #D9AA47;
+}
+
+.user {
+    width: 70px;
+    margin: 0 20px 0 0;
+}
+
+.sidebar__text {
+    color: #FF0C3B;
+    font-family: 'Fredoka One', cursive;
+    font-size: 27pt;
+}
+
+.link {
+    margin: 20px 10px;
+    color:#FFC853;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: underline;
+}
+
+.link:hover {
+    color: #82071E;
+}
+
+/*post styles*/
+.post__wrapper {
+    display: inline-block;
+    margin: 0 0 20px 5%;
+    width: 66.66%; 
+}
+
+.post {
+    background: #BD0A2B;
+    box-shadow:0px 3px 5px 0px rgba(0,0,0,0.2);
+    margin: 20px 0 0 0;
+    padding: 15px 15px 0 15px;
+}
+
+.post__header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    margin: 0 0 20px 0;
+}
+
+.post__profile {
+    align-items: center;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+.post__delete {
+    align-items: center;
+    background: #FFC853;
+    border-radius: 20px;
+    box-shadow:6px 6px 5px 0px rgba(0,0,0,0.3);
+    color: #FF0C3B;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: space-around;
+    height: auto;
+    width: 15%;
+    padding: 20px;
+}
+
+.post__delete:hover {
+    background: #D9AA47;
+}
+
+.delete-span {
+    width: 40px;
+}
+
+.post__username {
+    color: #FFF;
+    font-family: 'Fredoka One', cursive;
+    font-size: 27pt;
+}
+
+.post__title {
+    color: #FFF;
+    font-family: 'Fredoka One', cursive;
+    font-size: 20pt;
+    margin: 0 0 20px 0;
+}
+
+.post__text {
+    color: #FFF;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15pt;
+}
+
+.post__footer {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.post__time-since {
+    color: #82071E;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12pt;
+}
+
+/*comment styles*/
+.comment {
+    background: #FF0C3B;
+    border-bottom: 1px solid #BD0A2B;
+    padding: 15px;
+}
+
+.comment__profile {
+    align-items: center;
+    cursor: pointer;
+    display: inline-flex;
+    justify-content: space-around;
+}
+
+.comment__username {
+    color: #FFF;
+    font-family: 'Fredoka One', cursive;
+    font-size: 20pt;
+}
+
+.comment__user{
+    width: 40px;
+    margin: 0 20px 0 0;
+}
+
+.comment__text {
+    color: #FFF;
+    display: inline;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 15pt;
+    vertical-align: top;
+    margin: 0 0 0 20px;
+}
+
+.comment__footer {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.comment__time-since {
+    color: #82071E;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 10pt;
+}
+
+.comment__link {
+    margin: 0 10px;
+    color: #FFC853;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 12pt;
+    text-decoration: underline;
+}
+
+/*login styles*/
+.auth {
+    background: #BD0A2B;
+    box-shadow: 3px 3px 5px 0px rgba(0,0,0,0.2);
+    height: 500px;
+    margin: auto auto;
+    width: 600px;
+}
+
+.form-group {
+    width: 100%;
+}
+
+.form-group label {
+    display: inline-block;
+    text-align: right;
+    margin-right: 20px;
+    width: 80px;
+}
+
+.auth__input {
+    border-radius: 6px;
+    outline: none;
+}
+
