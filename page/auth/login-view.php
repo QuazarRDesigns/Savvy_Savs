@@ -6,7 +6,7 @@
         </div>
         <div class="form-group">
             <label for="password">Password:</label>
-            <input class="auth__input" id="password" type="text" name="inputPassword"/>
+            <input class="auth__input" id="password" type="password" name="inputPassword"/>
         </div>
         <?php
         if (isset($error)) {

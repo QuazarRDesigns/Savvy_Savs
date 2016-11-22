@@ -17,14 +17,22 @@ if (isset($_POST['submit'])) {
         if ($user === null) {
             header('Location: index.php?module=auth&page=login');
         }
-        //$admin = false;
 
         if ($username === $user->getUsername() && $password === $user->getPassword()) {
             $_SESSION['user_username'] = $username;
             $_SESSION['user_password'] = $password;
+            if ($dao->isAdmin($user)) {
+                $_SESSION['admin'] = $dao->isAdmin($user);
+            }
             header('Location: index.php?module=posts&page=posts');
         } else {
             $error = 'These credentials are invalid';
         }
     }
 }
+
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header('Location: index.php?module=posts&page=posts');
+}
+?>

@@ -12,3 +12,14 @@ $sql = 'SELECT posts.text, posts.title, posts.user_id, posts.id, posts.date_crea
 $posts = $dao->find($sql);
 
 include '../page/comments/comments-ctrl.php';
+
+if (isset($_SESSION['user_username'])) {
+    $username = $_SESSION['user_username'];
+}
+
+if (isset($_SESSION['admin'])) {
+    $admin = true;
+}
+else {
+    $admin = false;
+}

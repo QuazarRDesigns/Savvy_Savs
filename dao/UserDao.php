@@ -75,7 +75,7 @@ class UserDao {
     }
     
     public function getUserDetails($username, $password) {
-        $row = $this->query('SELECT * FROM `users` WHERE username="' . $username . '"AND password="' . $password . '" ')->fetch();
+        $row = $this->query('SELECT username, password, id FROM `users` WHERE username="' . $username . '"AND password="' . $password . '" ')->fetch();
         if (!$row) {
             return null;
         }
@@ -83,6 +83,14 @@ class UserDao {
         UserMapper::map($user, $row);
         return $user;
         
+    }
+    
+    public function isAdmin($user){
+        if ($user->getUsername() === 'QuazaR' && $user->getId() === '1') {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
