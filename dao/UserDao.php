@@ -34,7 +34,7 @@ class UserDao {
      * @return User User or <i>null</i> if not found
      */
     public function findById($id) {
-        $row = $this->query('SELECT * FROM users WHERE status != "deleted" AND id = ' . (int) $id)->fetch();
+        $row = $this->query('SELECT * FROM users WHERE id = ' . (int) $id)->fetch();
         if (!$row) {
             return null;
         }
@@ -61,15 +61,9 @@ class UserDao {
      * @return bool <i>true</i> on success, <i>false</i> otherwise
      */
     public function delete($id) {
-        $sql = '
-            UPDATE users SET
-                status = :status
-            WHERE
-                id = :id';
+        $sql = 'DELETE FROM users WHERE id = ' . (int) $id;
         $statement = $this->getDb()->prepare($sql);
         $this->executeStatement($statement, array(
-            ':status' => 'deleted',
-            ':id' => $id,
         ));
         return $statement->rowCount() == 1;
     }
@@ -138,10 +132,9 @@ class UserDao {
     private function insert(User $user) {
 //$now = new DateTime();
         $user->setId(null);
-        $user->setStatus('pending');
         $sql = '
-            INSERT INTO users (id, first_name, last_name, username, password, status)
-                VALUES (:id, :first_name, :last_name, :username, :password, :status)';
+            INSERT INTO users (id, username, password)
+                VALUES (:id, :username, :password)';
         return $this->execute($sql, $user);
     }
 
@@ -152,11 +145,8 @@ class UserDao {
     private function update(User $user) {
         $sql = '
             UPDATE users SET
-                first_name = :first_name,
-                last_name = :last_name,
                 username = :username,
                 password = :password,
-                status = :status
             WHERE
                 id = :id';
         return $this->execute($sql, $user);
@@ -181,11 +171,8 @@ class UserDao {
     private function getParams(User $user) {
         $params = array(
             ':id' => $user->getId(),
-            ':first_name' => $user->getFirstName(),
-            ':last_name' => $user->getLastName(),
             ':username' => $user->getUsername(),
             ':password' => $user->getPassword(),
-            ':status' => $user->getStatus()
         );
         return $params;
     }

@@ -49,6 +49,7 @@ final class Index {
             'Error' => '../validation/Error.php',
             'PostValidator' => '../validation/PostValidator.php',
             'CommentValidator' => '../validation/CommentValidator.php',
+            'UserValidator' => '../validation/UserValidator.php',
             'Flash' => '../flash/Flash.php',
             'NotFoundException' => '../exception/NotFoundException.php',
             'UserDao' => '../dao/UserDao.php',
