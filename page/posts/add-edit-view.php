@@ -37,8 +37,7 @@ function error_field($title, array $errors) {
         </div>
         <div class="field">
             <label>Text:</label>
-            <textarea name="post[text]" class="text <?php echo error_field('text', $errors); ?>"><?php echo Utils::escape($post->getText()); ?>
-            </textarea>
+            <textarea name="post[text]" class="text <?php echo error_field('text', $errors); ?>"><?php echo Utils::escape($post->getText()); ?></textarea>
         </div>           
         <div class="wrapper">
 <!--            <input type="submit" name="cancel" value="CANCEL" class="submit" />-->

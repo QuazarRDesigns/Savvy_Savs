@@ -15,7 +15,7 @@ if ($edit) {
     $post = new Post();
     $post->getText();
     $post->getTitle(); 
-    $user_id = 2;
+    $user_id = $_GET['user_id'];
     $post->setUser_id($user_id);
     $date_created = new DateTime($post->getDate_created(), new DateTimeZone('NZ'));
     $post->setDate_created($date_created->format(DateTime::ISO8601));

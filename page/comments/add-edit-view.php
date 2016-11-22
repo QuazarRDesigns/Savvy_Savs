@@ -32,8 +32,7 @@ function error_field($title, array $errors) {
     <fieldset>
         <div class="field">
             <label>Comment:</label>
-            <textarea name="comment[comment]" class="text <?php echo error_field('text', $errors); ?>"><?php echo Utils::escape($comment->getComment()); ?>
-            </textarea>
+            <textarea name="comment[comment]" class="text <?php echo error_field('text', $errors); ?>"><?php echo Utils::escape($comment->getComment()); ?></textarea>
         </div>           
         <div class="wrapper">
 <!--            <input type="submit" name="cancel" value="CANCEL" class="submit" />-->

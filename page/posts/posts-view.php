@@ -7,7 +7,7 @@
         <a class="sidebar__box" href="index.php?module=auth&page=login">
             <p class="sidebar__text">Log In</p>
         </a>
-        <a class="link">Sign Up</a>
+        <a class="sidebar__link" href="index.php?module=profile&page=signup">Sign Up</a>
     <?php endif; ?>
     <?php if (isset($username)): ?>
         <a class="sidebar__box" href="index.php?module=profile&page=profile">
@@ -16,9 +16,9 @@
             </div>
             <p class="sidebar__text"><?php echo $username ?></p>
         </a>
-        <a class="link" href="index.php?module=auth&page=login&logout=true">Log Out</a> 
+        <a class="sidebar__link" href="index.php?module=auth&page=login&logout=true">Log Out</a> 
         <?php if ($admin): ?>
-            <a class="sidebar__box" href="index.php?module=posts&page=add-edit"><p class="sidebar__text">+ Add Post</p></a>
+            <a class="sidebar__box" href="index.php?module=posts&page=add-edit&user_id=<?php echo $user_id ?>"><p class="sidebar__text">+ Add Post</p></a>
         <?php endif; ?>
     <?php endif; ?>
 </div>
@@ -27,13 +27,12 @@
 
     <?php foreach ($posts as $post): ?>
         <div class="post">
-            <?= Utils::escape($post->getId()) . '/' . Utils::escape($post->getUser_id()) ?>
             <div class="post__header">
                 <div class="post__profile">
                     <div class="user">
                         <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 70 70"><defs><style>.cls-3{fill:#ff0d3b;}.cls-4{fill:#f1f1f1;}</style><symbol id="User" data-name="User" viewBox="0 0 70 70"><path class="cls-3" d="M70,35A35,35,0,1,1,35,0,34.83,34.83,0,0,1,70,35Z"/><circle class="cls-4" cx="34.66" cy="26.16" r="22"/><path class="cls-4" d="M64.36,54.06a35,35,0,0,1-59-.4,43,43,0,0,1,59,.4Z"/></symbol></defs><title>profile_placeholder</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><use id="User-3" data-name="User" width="70" height="70" xlink:href="#User"/></g></g></svg>
                     </div>
-                    <p class="post__username"><?php echo Utils::escape($post->getUsername()) ?></p>
+                    <p class="post__username"><?php echo Utils::escape($post->getUsername()); ?></p>
                 </div>
                 <a class="post__delete" href="index.php?module=posts&page=delete&id=<?php echo $post->getId() ?>"><span class="delete-span"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 45.77 15.26"><defs><style>.cls-5{fill:#ff0d3b;}</style></defs><title>Minus Sign</title><g id="Layer_6" data-name="Layer 6"><g id="Layer_5-6" data-name="Layer 5"><rect class="cls-5" x="15.26" y="-15.26" width="15.26" height="45.77" rx="6" ry="6" transform="translate(15.26 30.52) rotate(-90)"/></g></g></svg></span></a>
             </div>
@@ -43,9 +42,13 @@
             </p>
             <div class="post__footer">
                 <p class="post__time-since"><?php echo Utils::escape(Utils::timeSince(new DateTime($post->getDate_created(), new DateTimeZone('NZ')))); ?></p>
-                <a class="link" href="index.php?module=comments&page=add-edit&post_id=<?php echo $post->getId() ?>">Comment</a>
-                <a class="link" href="index.php?module=posts&page=delete&id=<?php echo $post->getId() ?>">Delete</a>
-                <a class="link" href="index.php?module=posts&page=add-edit&id=<?php echo $post->getId() ?>">Edit</a>
+                <?php if (isset($username)): ?>
+                    <a class="post__link" href="index.php?module=comments&page=add-edit&post_id=<?php echo $post->getId(); ?>&user_id=<?php echo $user_id ?>">Comment</a>
+                    <?php if ($admin): ?>
+                        <a class="post__link" href="index.php?module=posts&page=delete&id=<?php echo $post->getId(); ?>">Delete</a>
+                        <a class="post__link" href="index.php?module=posts&page=add-edit&id=<?php echo $post->getId(); ?>">Edit</a>
+                    <?php endif; ?>
+                <?php endif; ?>
             </div>
         </div>
         <?php foreach ($comments as $comment): ?>
@@ -55,13 +58,17 @@
                         <div class="comment__user">
                             <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 70 70"><defs><style>.cls-3{fill:#ff0d3b;}.cls-4{fill:#f1f1f1;}</style><symbol id="User" data-name="User" viewBox="0 0 70 70"><path class="cls-3" d="M70,35A35,35,0,1,1,35,0,34.83,34.83,0,0,1,70,35Z"/><circle class="cls-4" cx="34.66" cy="26.16" r="22"/><path class="cls-4" d="M64.36,54.06a35,35,0,0,1-59-.4,43,43,0,0,1,59,.4Z"/></symbol></defs><title>profile_placeholder</title><g id="Layer_2" data-name="Layer 2"><g id="Layer_1-2" data-name="Layer 1"><use id="User-3" data-name="User" width="70" height="70" xlink:href="#User"/></g></g></svg>
                         </div>
-                        <p class="comment__username"><?php echo Utils::escape($comment->getUsername()) ?></p>
+                        <p class="comment__username"><?php echo Utils::escape($comment->getUsername()); ?></p>
                     </div>
-                    <p class="comment__text"><?php echo Utils::escape($comment->getComment()) ?></p>
+                    <p class="comment__text"><?php echo Utils::escape($comment->getComment()); ?></p>
                     <div class="comment__footer">
                         <p class="comment__time-since"><?php echo Utils::escape(Utils::timeSince(new DateTime($comment->getDate_created(), new DateTimeZone('NZ')))); ?></p>
-                        <a class="comment__link" href="index.php?module=comments&page=delete&id=<?php echo $comment->getId() ?>">Delete</a>
-                        <a class="comment__link" href="index.php?module=comments&page=add-edit&id=<?php echo $comment->getId() ?>">Edit</a>
+                        <?php if (isset($username)): ?>
+                            <?php if ($admin): ?>
+                                <a class="comment__link" href="index.php?module=comments&page=delete&id=<?php echo $comment->getId() ?>">Delete</a>
+                            <?php endif; ?>
+                            <a class="comment__link" href="index.php?module=comments&page=add-edit&id=<?php echo $comment->getId() ?>">Edit</a>
+                        <?php endif; ?>
                     </div>
                 </div><?php } ?>
         <?php endforeach; ?>

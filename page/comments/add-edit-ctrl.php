@@ -14,7 +14,7 @@ if ($edit) {
     // set defaults
     $comment = new Comment();
     $comment->getComment();
-    $user_id = 2;
+    $user_id = $_GET['user_id'];
     $comment->setUser_id($user_id);
     $date_created = new DateTime($comment->getDate_created(), new DateTimeZone('NZ'));
     $comment->setDate_created($date_created->format(DateTime::ISO8601));

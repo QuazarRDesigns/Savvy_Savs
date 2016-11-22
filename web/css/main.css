@@ -74,7 +74,7 @@ body {
     font-size: 27pt;
 }
 
-.link {
+.sidebar__link {
     margin: 20px 10px;
     color:#FFC853;
     cursor: pointer;
@@ -82,7 +82,7 @@ body {
     text-decoration: underline;
 }
 
-.link:hover {
+.sidebar__link:hover {
     color: #82071E;
 }
 
@@ -97,7 +97,7 @@ body {
     background: #BD0A2B;
     box-shadow:0px 3px 5px 0px rgba(0,0,0,0.2);
     margin: 20px 0 0 0;
-    padding: 15px 15px 0 15px;
+    padding: 15px;
 }
 
 .post__header {
@@ -156,9 +156,22 @@ body {
 }
 
 .post__footer {
-    align-items: center;
+    align-items: flex-end;
     display: flex;
     justify-content: flex-start;
+    margin: 15px 0 0 0;
+}
+
+.post__link {
+    margin: 0 10px;
+    color:#FFC853;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    text-decoration: underline;
+}
+
+.post__link:hover {
+    color: #82071E;
 }
 
 .post__time-since {
@@ -220,6 +233,10 @@ body {
     font-family: 'Montserrat', sans-serif;
     font-size: 12pt;
     text-decoration: underline;
+}
+
+.comment__link:hover {
+    color: #82071E;
 }
 
 /*login styles*/
